@@ -280,4 +280,15 @@ public class UnidadmaterialJpaController implements Serializable {
         }
     }
     
+    public Unidadmaterial findMaterial(String unidadmaterial) {
+        EntityManager em = getEntityManager();
+        Query q;
+        q = em.createNamedQuery("Unidadmaterial.findByNombrematerial")
+                .setParameter("nombrematerial",unidadmaterial);
+                
+        if (q.getResultList().isEmpty()) {
+            return null;
+        }
+        return (Unidadmaterial) q.getSingleResult();
+    }
 }
